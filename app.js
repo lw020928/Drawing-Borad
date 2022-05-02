@@ -1,14 +1,20 @@
-canvas.onclick = (e) => {
-    console.log(e) // console.log 调试大法
-    let div = document.createElement('div')
-    div.style.position = 'absolute'
-    div.style.left = e.clientX + 'px'
-    div.style.top = e.clientY + 'px'
-    div.style.width = '12px'
-    div.style.height = '12px'
-    div.style.marginLeft = '-6px'
-    div.style.marginTop = '-6px'
-    div.style.backgroundColor = 'black'
-    div.style.borderRadius = '50%'
-    canvas.appendChild(div)
+let canvas = document.getElementById('canvas')
+canvas.width = document.documentElement.clientWidth
+canvas.height = document.documentElement.clientHeight
+let ctx = canvas.getContext("2d")
+ctx.fillStyle = 'black'
+let painting = false
+canvas.onmousedown = () => {
+    painting = true
+}
+canvas.onmouseup = () => {
+    painting = false
+}
+canvas.onmousemove = (e) => {
+    if (painting === true) {
+        // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10) // 绘制矩形
+        ctx.beginPath();
+        ctx.arc(e.clientX, e.clientY, 5, 0, 2 * Math.PI);
+        ctx.fill()
+    }
 }

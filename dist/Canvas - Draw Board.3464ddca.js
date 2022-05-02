@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"dbTJo":[function(require,module,exports) {
+})({"jNXnl":[function(require,module,exports) {
 "use strict";
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "138b6a135baa4167";
+module.bundle.HMR_BUNDLE_ID = "0907ca6d3464ddca";
 function _toConsumableArray(arr) {
     return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
@@ -525,28 +525,8 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"igcvL":[function(require,module,exports) {
-let canvas = document.getElementById('canvas');
-canvas.width = document.documentElement.clientWidth;
-canvas.height = document.documentElement.clientHeight;
-let ctx = canvas.getContext("2d");
-ctx.fillStyle = 'black';
-let painting = false;
-canvas.onmousedown = ()=>{
-    painting = true;
-};
-canvas.onmouseup = ()=>{
-    painting = false;
-};
-canvas.onmousemove = (e)=>{
-    if (painting === true) {
-        // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10) // 绘制矩形
-        ctx.beginPath();
-        ctx.arc(e.clientX, e.clientY, 5, 0, 2 * Math.PI);
-        ctx.fill();
-    }
-};
+},{}],"j4kuM":[function(require,module,exports) {
 
-},{}]},["dbTJo","igcvL"], "igcvL", "parcelRequire94c2")
+},{}]},["jNXnl","j4kuM"], "j4kuM", "parcelRequire94c2")
 
-//# sourceMappingURL=index.5baa4167.js.map
+//# sourceMappingURL=Canvas - Draw Board.3464ddca.js.map
