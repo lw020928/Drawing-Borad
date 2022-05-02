@@ -3,18 +3,41 @@ canvas.width = document.documentElement.clientWidth
 canvas.height = document.documentElement.clientHeight
 let ctx = canvas.getContext("2d")
 ctx.fillStyle = 'black'
+ctx.lineWidth = 6
+ctx.lineCap = 'round'
 let painting = false
-canvas.onmousedown = () => {
-    painting = true
-}
-canvas.onmouseup = () => {
-    painting = false
-}
-canvas.onmousemove = (e) => {
-    if (painting === true) {
-        // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10) // 绘制矩形
-        ctx.beginPath();
-        ctx.arc(e.clientX, e.clientY, 5, 0, 2 * Math.PI);
-        ctx.fill()
+let last
+let isTouchDevice = 'ontouchstart' in document.documentElement
+if (isTouchDevice) {
+    canvas.ontouchstart = (e) => {
+        let x = e.touches[0].clientX
+        let y = e.touches[0].clientY
+        last = [x, y]
     }
+    canvas.ontouchmove = (e) => {
+        let x = e.touches[0].clientX
+        let y = e.touches[0].clientY
+        drawLine(last[0], last[1], x, y)
+        last = [x, y]
+    }
+} else {
+    canvas.onmousedown = (e) => {
+        painting = true
+        last = [e.clientX, e.clientY]
+    }
+    canvas.onmouseup = () => {
+        painting = false
+    }
+    canvas.onmousemove = (e) => {
+        if (painting === true) {
+            drawLine(last[0], last[1], e.clientX, e.clientY)
+            last = [e.clientX, e.clientY]
+        }
+    }
+}
+function drawLine(x1, y1, x2, y2) {
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.stroke()
 }
